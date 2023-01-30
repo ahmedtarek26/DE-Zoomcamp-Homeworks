@@ -1,0 +1,32 @@
+services:
+  pgdatabase:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_green_taxi
+    volumes:
+      - "./ny_green_taxi_data:/var/lib/postgresql/data:rw"
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "8080:80"
+
+docker run -it
+  -e POSTGRES_USER="root"
+  -e POSTGRES_PASSWORD="root"
+  -e POSTGRES_DB="ny_green_taxi"
+  -v E:/DE-Zoomcamp-Homeworks/week_1/homework_1/ny_green_taxi:/var/lib/postgresql/data
+  -p 5432:5432
+  postgres:13
+
+docker run -it \
+  -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
+  -e PGADMIN_DEFAULT_PASSWORD="root" \
+  -p 8080:80 \
+  dpage/pgadmin4
